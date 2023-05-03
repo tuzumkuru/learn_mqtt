@@ -21,7 +21,7 @@ temperature, humidity = sensor.measurements
 timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 # Print the temperature and humidity values along with the timestamp
-print("{} Temperature: {:.2f} C, Humidity: {:.2f} %\n".format(timestamp, temperature, humidity))
+print("{} Temperature: {:.2f} C, Humidity: {:.2f} %".format(timestamp, temperature, humidity))
 
 # Write data to a file
 filename = os.path.join(script_dir, "sensor_data.txt")
