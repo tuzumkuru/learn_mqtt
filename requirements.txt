@@ -1,0 +1,15 @@
+adafruit-blinka==8.19.0
+adafruit-circuitpython-bme680==3.4.13
+adafruit-circuitpython-busdevice==5.2.6
+adafruit-circuitpython-register==1.9.16
+adafruit-circuitpython-requests==1.14.0
+adafruit-circuitpython-shtc3==1.1.12
+adafruit-circuitpython-typing==1.9.4
+adafruit-platformdetect==3.46.0
+adafruit-pureio==1.1.11
+paho-mqtt==1.6.1
+pyftdi==0.54.0
+pyserial==3.5
+pyusb==1.2.1
+rpi.gpio==0.7.1
+typing-extensions==4.6.3
