@@ -5,7 +5,6 @@ import psutil
 import json
 import time
 import paho.mqtt.publish as publish
-from gpiozero import CPUTemperature
 
 # Load environment variables from .env
 load_dotenv()
@@ -16,9 +15,6 @@ port = int(os.getenv("MQTT_BROKER_PORT"))
 topic = "TEST/COMPUTE/RPI5"  # Update the topic here
 username = os.getenv("MQTT_BROKER_USERNAME")
 password = os.getenv("MQTT_BROKER_PASSWORD")
-
-# Create a CPUTemperature object
-cpu_temp = CPUTemperature()
 
 def get_system_stats():
     # Get CPU usage
@@ -33,11 +29,19 @@ def get_system_stats():
     # Get load averages
     load_avg = os.getloadavg()
 
+    # Check if running on Raspberry Pi
+    if 'arm' in os.uname().machine:
+        from gpiozero import CPUTemperature
+        cpu_temp = CPUTemperature()
+        temperature = cpu_temp.temperature
+    else:
+        temperature = psutil.sensors_temperatures()
+
     # Get network interfaces
     network_info = psutil.net_if_addrs()
 
     stats = {
-        "temperature": cpu_temp.temperature,
+        "temperature": temperature,
         "cpu_usage": cpu_usage,
         "memory_usage": {
             "total": memory_info.total,
