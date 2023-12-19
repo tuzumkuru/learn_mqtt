@@ -29,16 +29,10 @@ def get_system_stats():
     # Get load averages
     load_avg = os.getloadavg()
 
-    # Check if running on Raspberry Pi
-    if 'arm' in os.uname().machine:
-        from gpiozero import CPUTemperature
-        cpu_temp = CPUTemperature()
-        temperature = cpu_temp.temperature
-    else:
-        temperature = psutil.sensors_temperatures()
-
-    # Get network interfaces
-    network_info = psutil.net_if_addrs()
+    # Get CPU temperature using psutil
+    temperature_info = psutil.sensors_temperatures()
+    cpu_temp_info = temperature_info.get("cpu_thermal", [{}])[0]
+    temperature = cpu_temp_info.current if cpu_temp_info else None
 
     stats = {
         "temperature": temperature,
@@ -59,8 +53,7 @@ def get_system_stats():
             "1_min": load_avg[0],
             "5_min": load_avg[1],
             "15_min": load_avg[2]
-        },
-        "network_info": network_info
+        }
     }
     return stats
 
@@ -73,4 +66,4 @@ def publish_stats():
 if __name__ == "__main__":
     while True:
         publish_stats()
-        time.sleep(1)  # Adjust the interval to 1 second
+        time.sleep(1)
