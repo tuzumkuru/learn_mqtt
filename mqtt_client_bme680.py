@@ -13,7 +13,7 @@ load_dotenv()
 MQTT_BROKER_ADDRESS = os.getenv('MQTT_BROKER_ADDRESS')
 MQTT_BROKER_USERNAME = os.getenv('MQTT_BROKER_USERNAME')
 MQTT_BROKER_PASSWORD = os.getenv('MQTT_BROKER_PASSWORD')
-MQTT_TOPIC = "NY/BEDROOM/BME680"
+MQTT_TOPIC = "TEST/SENSOR/BME680"
 
 # Create sensor object, communicating over the board's default I2C bus
 i2c = board.I2C()  # uses board.SCL and board.SDA

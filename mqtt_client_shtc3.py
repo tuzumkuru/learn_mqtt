@@ -14,7 +14,7 @@ load_dotenv()
 MQTT_BROKER_ADDRESS = os.getenv('MQTT_BROKER_ADDRESS')
 MQTT_BROKER_USERNAME = os.getenv('MQTT_BROKER_USERNAME')
 MQTT_BROKER_PASSWORD = os.getenv('MQTT_BROKER_PASSWORD')
-MQTT_TOPIC = "NY/BEDROOM/SHTC3" # Write a good topic name for your own use
+MQTT_TOPIC = "TEST/SENSOR/SHTC3" # Write a good topic name for your own use
 
 # Initialize the I2C bus and the SHTC3 sensor
 i2c = busio.I2C(board.SCL, board.SDA)
